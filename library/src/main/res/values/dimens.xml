@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="pin_code_view_inset_default">1dp</dimen>
+
+    <dimen name="pin_code_view_inset_left">1dp</dimen>
+    <dimen name="pin_code_view_inset_right">1dp</dimen>
+    <dimen name="pin_code_view_inset_top">1dp</dimen>
+    <dimen name="pin_code_view_inset_bootom">1dp</dimen>
+
+    <dimen name="pin_code_height">80dp</dimen>
+
+</resources>

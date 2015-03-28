@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/rl_pin_code_container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:descendantFocusability="beforeDescendants"
+    android:layout_height="@dimen/pin_code_height"
+    android:background="@color/view_selected_pin_code">
+
+    <RelativeLayout
+        android:id="@+id/rl_front"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_margin="1dp"
+        android:background="@color/view_empty_pin_code_background">
+
+        <EditText
+            android:id="@+id/et_pin_code"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:background="@android:color/white"
+            android:cursorVisible="false"
+            android:gravity="center"
+            android:maxLength="1"
+            android:singleLine="true"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_back"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/view_fillout_pin_code_background"
+        android:visibility="gone">
+
+        <View
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/circle"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
