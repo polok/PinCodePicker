@@ -26,16 +26,19 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 
+import pl.polok.pincodepicker.library.PinCodeListener;
 import pl.polok.pincodepicker.library.PinCodeViewListener;
 import pl.polok.pincodepicker.library.R;
 
 public class PinCodeAdapter extends RecyclerView.Adapter<PinCodeAdapter.PinCodeViewHolder> implements PinCodeViewListener {
 
-    private Character[] pinCodeArray;
+    private char[] pinCodeArray;
     private static int currentPosition = 0;
 
+    private PinCodeListener pinCodeListener;
+
     public PinCodeAdapter(int pinCodeLength) {
-        pinCodeArray = new Character[pinCodeLength];
+        pinCodeArray = new char[pinCodeLength];
     }
 
     @Override
@@ -59,7 +62,7 @@ public class PinCodeAdapter extends RecyclerView.Adapter<PinCodeAdapter.PinCodeV
             pinCodeViewHolder.etPinCode.setVisibility(View.VISIBLE);
             pinCodeViewHolder.etPinCode.requestFocus();
         } else {
-            if (character == null) {
+            if (character == '\u0000') {
                 pinCodeViewHolder.rlPinCodeContainer.setBackgroundResource(R.color.view_empty_pin_code_background);
                 pinCodeViewHolder.rlFront.setVisibility(View.VISIBLE);
                 pinCodeViewHolder.rlBack.setVisibility(View.GONE);
@@ -86,6 +89,20 @@ public class PinCodeAdapter extends RecyclerView.Adapter<PinCodeAdapter.PinCodeV
         notifyItemChanged(currentPosition);
         currentPosition = position + 1;
         notifyItemChanged(currentPosition);
+
+        if(hasWholeCode()) {
+            pinCodeListener.onPinCodePass(String.copyValueOf(pinCodeArray));
+        }
+    }
+
+    private boolean hasWholeCode() {
+        boolean hasWholeCode = true;
+
+        for(int i = 0; i < pinCodeArray.length; i++) {
+            hasWholeCode = pinCodeArray[i] != '\u0000';
+        }
+
+        return hasWholeCode;
     }
 
     @Override
@@ -141,6 +158,10 @@ public class PinCodeAdapter extends RecyclerView.Adapter<PinCodeAdapter.PinCodeV
         public void onClick(View view) {
             codeChangeListener.onPinCodeClick(getPosition());
         }
+    }
+
+    public void setPinCodeListener(PinCodeListener listener) {
+        this.pinCodeListener = listener;
     }
 
     private static abstract class PinCodeTextWatcher implements TextWatcher {

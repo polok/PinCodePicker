@@ -72,4 +72,8 @@ public class PinCodeRecyclerView extends android.support.v7.widget.RecyclerView 
         setLayoutParams(params);
     }
 
+    public void setPincodeListener(PinCodeListener pincodeListener) {
+        pinCodeAdapter.setPinCodeListener(pincodeListener);
+    }
+
 }
