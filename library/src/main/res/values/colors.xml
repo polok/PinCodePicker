@@ -2,7 +2,13 @@
 <resources>
 
     <color name="view_selected_pin_code">#ffff353b</color>
-    <color name="view_fillout_pin_code_background">#ff63ff12</color>
+
+    <color name="pin_code_text">#FFFFFFFF</color>
+
+    <color name="view_fillout_pin_code_background">#ff3b3b3b</color>
+
     <color name="view_empty_pin_code_background">#ff343434</color>
+
+    <color name="view_selected_pin_code_background">#ff282828</color>
 
 </resources>
