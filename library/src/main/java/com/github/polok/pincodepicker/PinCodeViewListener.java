@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package pl.polok.pincodepicker.library;
+package com.github.polok.pincodepicker;
 
 public interface PinCodeViewListener {
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package pl.polok.pincodepicker.library;
+package com.github.polok.pincodepicker;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -22,8 +22,10 @@ import android.support.v7.widget.GridLayoutManager;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 
-import pl.polok.pincodepicker.library.adapter.PinCodeAdapter;
-import pl.polok.pincodepicker.library.view.RecyclerViewInsetDecoration;
+import pl.polok.pincodepicker.library.R;
+
+import com.github.polok.pincodepicker.adapter.PinCodeAdapter;
+import com.github.polok.pincodepicker.view.RecyclerViewInsetDecoration;
 
 public class PinCodeRecyclerView extends android.support.v7.widget.RecyclerView {
 

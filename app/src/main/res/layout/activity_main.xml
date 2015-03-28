@@ -10,7 +10,7 @@
                 android:paddingTop="@dimen/activity_vertical_margin"
                 tools:context=".MainActivity">
 
-    <pl.polok.pincodepicker.library.PinCodeRecyclerView
+    <com.github.polok.pincodepicker.PinCodeRecyclerView
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

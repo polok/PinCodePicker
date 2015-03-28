@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package pl.polok.pincodepicker.library.adapter;
+package com.github.polok.pincodepicker.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -26,8 +26,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 
-import pl.polok.pincodepicker.library.PinCodeListener;
-import pl.polok.pincodepicker.library.PinCodeViewListener;
+import com.github.polok.pincodepicker.PinCodeListener;
+import com.github.polok.pincodepicker.PinCodeViewListener;
 import pl.polok.pincodepicker.library.R;
 
 public class PinCodeAdapter extends RecyclerView.Adapter<PinCodeAdapter.PinCodeViewHolder> implements PinCodeViewListener {

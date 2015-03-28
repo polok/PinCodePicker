@@ -1,4 +1,4 @@
-package pl.polok.pincodepicker.library;
+package com.github.polok.pincodepicker;
 
 public interface PinCodeListener {
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package pl.polok.pincodepicker.library.view;
+package com.github.polok.pincodepicker.view;
 
 import android.content.Context;
 import android.graphics.Rect;

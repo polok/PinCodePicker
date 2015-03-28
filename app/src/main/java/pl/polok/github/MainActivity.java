@@ -1,9 +1,13 @@
 package pl.polok.github;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.github.polok.pincodepicker.PinCodeListener;
+import com.github.polok.pincodepicker.PinCodeRecyclerView;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -12,6 +16,14 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        PinCodeRecyclerView view = (PinCodeRecyclerView) findViewById(R.id.list);
+        view.setPincodeListener(new PinCodeListener() {
+            @Override
+            public void onPinCodePass(String pinCode) {
+                Toast.makeText(MainActivity.this, "Whole code", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 
