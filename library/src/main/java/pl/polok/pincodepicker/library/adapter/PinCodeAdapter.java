@@ -57,6 +57,7 @@ public class PinCodeAdapter extends RecyclerView.Adapter<PinCodeAdapter.PinCodeV
             pinCodeViewHolder.rlBack.setVisibility(View.GONE);
 
             pinCodeViewHolder.etPinCode.setVisibility(View.VISIBLE);
+            pinCodeViewHolder.etPinCode.requestFocus();
         } else {
             if (character == null) {
                 pinCodeViewHolder.rlPinCodeContainer.setBackgroundResource(R.color.view_empty_pin_code_background);
@@ -83,7 +84,7 @@ public class PinCodeAdapter extends RecyclerView.Adapter<PinCodeAdapter.PinCodeV
         pinCodeArray[position] = pinCodeChar;
 
         notifyItemChanged(currentPosition);
-        ++currentPosition;
+        currentPosition = position + 1;
         notifyItemChanged(currentPosition);
     }
 
@@ -126,7 +127,7 @@ public class PinCodeAdapter extends RecyclerView.Adapter<PinCodeAdapter.PinCodeV
             etPinCode.setOnKeyListener(new View.OnKeyListener() {
                 @Override
                 public boolean onKey(View view, int i, KeyEvent keyEvent) {
-                    if(keyEvent.getAction() == 0 && etPinCode.length() == 1) {
+                    if(keyEvent.getAction() == KeyEvent.ACTION_DOWN && etPinCode.length() == 1) {
                         etPinCode.getText().clear();
                     }
                     return false;
