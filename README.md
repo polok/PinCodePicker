@@ -27,8 +27,28 @@ TODO
 TODO
 
 #####2.Usage
-TODO
 
+######Add picker into our UI (set pincode length)
+```xml
+    <com.github.polok.pincodepicker.PinCodeRecyclerView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="#3E464C"
+        pin_code:pin_code_length="6"/>
+```
+
+######Set listener to be notified when whole pincode was entered
+```java
+    PinCodeRecyclerView view = (PinCodeRecyclerView) findViewById(R.id.list);
+        view.setPincodeListener(new PinCodeListener() {
+            @Override
+            public void onPinCodePass(String pinCode) {
+                Toast.makeText(MainActivity.this, "Whole code", Toast.LENGTH_SHORT).show();
+            }
+        });
+```
 
 ####If you want to see more details, go ahead and check the demo!
 
