@@ -18,7 +18,7 @@ TODO
 
 
 ###Screenshot
-TODO
+![image](art/pin_code_picker_0_0_1.gif)
 
 
 ###Quick Setup（Basic Usage)
