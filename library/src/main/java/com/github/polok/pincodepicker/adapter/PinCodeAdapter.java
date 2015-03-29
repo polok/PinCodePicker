@@ -28,7 +28,7 @@ import android.widget.RelativeLayout;
 
 import com.github.polok.pincodepicker.PinCodeListener;
 import com.github.polok.pincodepicker.PinCodeViewListener;
-import pl.polok.pincodepicker.library.R;
+import com.github.polok.pincodepicker.R;
 
 public class PinCodeAdapter extends RecyclerView.Adapter<PinCodeAdapter.PinCodeViewHolder> implements PinCodeViewListener {
 

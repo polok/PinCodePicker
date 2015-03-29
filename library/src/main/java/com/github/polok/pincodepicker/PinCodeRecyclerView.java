@@ -22,8 +22,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 
-import pl.polok.pincodepicker.library.R;
-
 import com.github.polok.pincodepicker.adapter.PinCodeAdapter;
 import com.github.polok.pincodepicker.view.RecyclerViewInsetDecoration;
 
