@@ -24,7 +24,14 @@ TODO
 ###Quick Setup（Basic Usage)
 
 #####1.Integration
-TODO
+
+###### Using Gradle:
+
+```xml
+dependencies {
+    compile 'com.github.polok.pincodepicker:pincodepicker:0.0.1'
+}
+```
 
 #####2.Usage
 
