@@ -116,7 +116,7 @@ public class PinCodeAdapter extends AbsPinCodeAdapter<PinCodeAdapter.PinCodeView
         boolean hasWholeCode = true;
 
         for (char item : pinCodeArray) {
-            hasWholeCode = item != NULL_CHARACTER;
+            hasWholeCode = item != NULL_CHARACTER && hasWholeCode;
         }
 
         return hasWholeCode;
