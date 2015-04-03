@@ -53,7 +53,7 @@ public class PinCodeRecyclerView extends android.support.v7.widget.RecyclerView 
 
         setLayoutManager(layoutManager);
 
-        pinCodeAdapter = new PinCodeAdapter(pinCodeLength);
+        pinCodeAdapter = new PinCodeAdapter(getResources(), pinCodeLength);
         setAdapter(pinCodeAdapter);
 
         addItemDecoration(new RecyclerViewInsetDecoration(context.getResources(), R.dimen.pin_code_view_inset_default));

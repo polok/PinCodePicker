@@ -17,6 +17,8 @@ package com.github.polok.pincodepicker;
 
 public interface PinCodeValidation {
     CharSequence getCorrectPinCode();
+
     void onPinCodeCorrect(String pinCode);
+
     void onPinCodeError(String pinCode);
 }
