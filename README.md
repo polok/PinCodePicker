@@ -5,21 +5,15 @@
 [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
 ###Description
+
 PinCodePicker was created for Android platform as a view which allows to take passwords/codes or some other sensitive data from end user in easy way, so developers can focus on the core functionalities of their application!
 
 Notice that PinCodePicker is a project under huge development ;) (at least should be)
 
-
 ####Welcome to fork and pull request.
-
-
-###Features
-TODO
-
 
 ###Screenshot
 ![image](art/pin_code_picker_0_0_1.gif)
-
 
 ###Quick Setup（Basic Usage)
 
@@ -27,10 +21,20 @@ TODO
 
 ###### Using Gradle:
 
-```xml
+```groovy
 dependencies {
     compile 'com.github.polok.pincodepicker:pincodepicker:0.0.1'
 }
+```
+
+###### Using Maven:
+
+```xml
+<dependency>
+    <groupId>com.github.polok.pincodepicker</groupId>
+    <artifactId>pincodepicker</artifactId>
+    <version>0.0.1</version>
+</dependency>
 ```
 
 #####2.Usage
@@ -46,19 +50,19 @@ dependencies {
         pin_code:pin_code_length="6"/>
 ```
 
-######Set listener to be notified when whole pincode was entered
+######Set listener to be notified when whole pin code was entered
+
 ```java
     PinCodeRecyclerView view = (PinCodeRecyclerView) findViewById(R.id.list);
         view.setPincodeListener(new PinCodeListener() {
             @Override
-            public void onPinCodePass(String pinCode) {
+            public void onPinCodeInserted(String pinCode) {
                 Toast.makeText(MainActivity.this, "Whole code", Toast.LENGTH_SHORT).show();
             }
         });
 ```
 
 ####If you want to see more details, go ahead and check the demo!
-
 
 License
 --------

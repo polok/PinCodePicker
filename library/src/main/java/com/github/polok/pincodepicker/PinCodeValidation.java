@@ -15,7 +15,8 @@
  */
 package com.github.polok.pincodepicker;
 
-public interface PinCodeViewListener {
-    void onPinCodeChange(int position, Character pinCodeChar);
-    void onPinCodeClick(int position);
+public interface PinCodeValidation {
+    CharSequence getCorrectPinCode();
+    void onPinCodeCorrect(String pinCode);
+    void onPinCodeError(String pinCode);
 }
