@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.polok.pincodepicker;
+package com.github.polok.pincodepicker.adapter;
 
 import android.content.res.Resources;
 import android.graphics.Rect;

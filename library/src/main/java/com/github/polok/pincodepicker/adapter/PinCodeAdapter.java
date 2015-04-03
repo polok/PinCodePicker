@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.polok.pincodepicker;
+package com.github.polok.pincodepicker.adapter;
 
 import android.content.res.Resources;
 import android.support.annotation.ColorRes;
@@ -25,6 +25,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+
+import com.github.polok.pincodepicker.PinCodeListener;
+import com.github.polok.pincodepicker.PinCodeValidation;
+import com.github.polok.pincodepicker.PinCodeViewListener;
+import com.github.polok.pincodepicker.R;
 
 public class PinCodeAdapter extends RecyclerView.Adapter<PinCodeAdapter.PinCodeViewHolder> implements PinCodeViewListener {
 

@@ -13,13 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.polok.pincodepicker;
+package com.github.polok.pincodepicker.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.v7.widget.GridLayoutManager;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
+
+import com.github.polok.pincodepicker.adapter.PinCodeAdapter;
+import com.github.polok.pincodepicker.PinCodeListener;
+import com.github.polok.pincodepicker.PinCodeValidation;
+import com.github.polok.pincodepicker.R;
+import com.github.polok.pincodepicker.adapter.RecyclerViewInsetDecoration;
 
 public class PinCodeRecyclerView extends android.support.v7.widget.RecyclerView {
 

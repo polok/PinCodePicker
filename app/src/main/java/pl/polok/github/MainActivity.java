@@ -20,7 +20,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.widget.Toast;
 
 import com.github.polok.pincodepicker.PinCodeListener;
-import com.github.polok.pincodepicker.PinCodeRecyclerView;
+import com.github.polok.pincodepicker.view.PinCodeRecyclerView;
 import com.github.polok.pincodepicker.PinCodeValidation;
 
 
