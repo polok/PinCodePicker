@@ -17,13 +17,11 @@ package com.github.polok.pincodepicker.adapter;
 
 import android.content.res.Resources;
 import android.support.annotation.ColorRes;
-import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.RelativeLayout;
 
 import com.github.polok.pincodepicker.PinCodeListener;
@@ -31,11 +29,7 @@ import com.github.polok.pincodepicker.PinCodeValidation;
 import com.github.polok.pincodepicker.PinCodeViewListener;
 import com.github.polok.pincodepicker.R;
 
-public class PinCodeAdapter extends RecyclerView.Adapter<PinCodeAdapter.PinCodeViewHolder> implements PinCodeViewListener {
-
-    public static final char NULL_CHARACTER = '\u0000';
-    private static int currentPosition = -1;
-    private char[] pinCodeArray;
+public class PinCodeAdapter extends AbsPinCodeAdapter<PinCodeAdapter.PinCodeViewHolder> implements PinCodeViewListener {
 
     private Resources resources;
 
@@ -43,8 +37,8 @@ public class PinCodeAdapter extends RecyclerView.Adapter<PinCodeAdapter.PinCodeV
     private PinCodeValidation pinCodeValidation;
 
     public PinCodeAdapter(Resources resources, int pinCodeLength) {
+        super(pinCodeLength);
         this.resources = resources;
-        this.pinCodeArray = new char[pinCodeLength];
     }
 
     @Override
@@ -135,24 +129,18 @@ public class PinCodeAdapter extends RecyclerView.Adapter<PinCodeAdapter.PinCodeV
         currentPosition = position;
     }
 
-    static class PinCodeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    static class PinCodeViewHolder extends AbsPinCodeViewHolder implements View.OnClickListener {
 
         RelativeLayout rlPinCodeContainer;
         RelativeLayout rlFront;
         RelativeLayout rlBack;
-        EditText etPinCode;
-
-        PinCodeViewListener codeChangeListener;
 
         public PinCodeViewHolder(View itemView, final PinCodeViewListener pinCodeViewListener) {
-            super(itemView);
-
-            codeChangeListener = pinCodeViewListener;
+            super(itemView, pinCodeViewListener, R.id.et_pin_code);
 
             rlPinCodeContainer = (RelativeLayout) itemView.findViewById(R.id.rl_pin_code_container);
             rlFront = (RelativeLayout) itemView.findViewById(R.id.rl_front);
             rlBack = (RelativeLayout) itemView.findViewById(R.id.rl_back);
-            etPinCode = (EditText) itemView.findViewById(R.id.et_pin_code);
 
             etPinCode.addTextChangedListener(new PinCodeTextWatcher() {
                 @Override
@@ -164,11 +152,6 @@ public class PinCodeAdapter extends RecyclerView.Adapter<PinCodeAdapter.PinCodeV
             });
 
             itemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View view) {
-            codeChangeListener.onPinCodeClick(getPosition());
         }
     }
 
