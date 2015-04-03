@@ -147,6 +147,8 @@ public class PinCodeAdapter extends AbsPinCodeAdapter<PinCodeAdapter.PinCodeView
                 public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
                     if (charSequence.length() > 0) {
                         pinCodeViewListener.onPinCodeChange(getPosition(), charSequence.charAt(0));
+                    } else {
+                        pinCodeViewListener.onPinCodeChange(getPosition(), NULL_CHARACTER);
                     }
                 }
             });
