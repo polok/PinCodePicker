@@ -53,13 +53,34 @@ dependencies {
 ######Set listener to be notified when whole pin code was entered
 
 ```java
-    PinCodeRecyclerView view = (PinCodeRecyclerView) findViewById(R.id.list);
-        view.setPincodeListener(new PinCodeListener() {
-            @Override
-            public void onPinCodeInserted(String pinCode) {
-                Toast.makeText(MainActivity.this, "Whole code", Toast.LENGTH_SHORT).show();
-            }
-        });
+PinCodeRecyclerView view = (PinCodeRecyclerView) findViewById(R.id.list);
+    view.setPincodeListener(new PinCodeListener() {
+        @Override
+        public void onPinCodeInserted(String pinCode) {
+            Toast.makeText(MainActivity.this, "Whole code", Toast.LENGTH_SHORT).show();
+        }
+    });
+```
+
+######You can also validate whole entered pin code and check whether it's equal to a specified value
+
+```java
+view.setPinCodeValidation(new PinCodeValidation() {
+    @Override
+    public CharSequence getCorrectPinCode() {
+        return "012345";
+    }
+
+    @Override
+    public void onPinCodeCorrect(String pinCode) {
+        Toast.makeText(MainActivity.this, "Code is correct", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onPinCodeError(String pinCode) {
+        Toast.makeText(MainActivity.this, "Code is NOT valid", Toast.LENGTH_SHORT).show();
+    }
+});
 ```
 
 ####If you want to see more details, go ahead and check the demo!
