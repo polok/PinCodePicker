@@ -1,6 +1,6 @@
 #PinCodePicker
 
-###Version: 0.0.2
+###Version: 0.0.3
 
 [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
@@ -13,7 +13,7 @@ Notice that PinCodePicker is a project under huge development ;) (at least shoul
 ####Welcome to fork and pull request.
 
 ###Screenshot
-![image](art/pin_code_picker_0_0_1.gif)
+![image](art/pin_code_picker_0_0_3.gif)
 
 ###Quick Setup（Basic Usage)
 
@@ -23,7 +23,7 @@ Notice that PinCodePicker is a project under huge development ;) (at least shoul
 
 ```groovy
 dependencies {
-    compile 'com.github.polok.pincodepicker:pincodepicker:0.0.2'
+    compile 'com.github.polok.pincodepicker:pincodepicker:0.0.3'
 }
 ```
 
@@ -33,7 +33,7 @@ dependencies {
 <dependency>
     <groupId>com.github.polok.pincodepicker</groupId>
     <artifactId>pincodepicker</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
 </dependency>
 ```
 
