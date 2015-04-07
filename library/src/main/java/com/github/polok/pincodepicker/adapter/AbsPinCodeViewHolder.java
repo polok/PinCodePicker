@@ -22,22 +22,32 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.github.polok.pincodepicker.PinCodeViewListener;
+import com.github.polok.pincodepicker.model.PinCodeType;
 
 public abstract class AbsPinCodeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     protected PinCodeViewListener codeChangeListener;
     protected EditText etPinCode;
 
-    public AbsPinCodeViewHolder(View itemView, PinCodeViewListener pinCodeViewListener, @IdRes int editTextResId) {
+    public AbsPinCodeViewHolder(View itemView, PinCodeViewListener pinCodeViewListener) {
         super(itemView);
 
         this.codeChangeListener = pinCodeViewListener;
 
-        etPinCode = (EditText) itemView.findViewById(editTextResId);
+        etPinCode = (EditText) itemView.findViewById(getEditTextId());
+        etPinCode.addTextChangedListener(getPinCodeTextWatcher());
     }
+
+    protected abstract @IdRes int getEditTextId();
+
+    protected abstract AbsPinCodeAdapter.PinCodeTextWatcher getPinCodeTextWatcher();
 
     @Override
     public void onClick(View view) {
         codeChangeListener.onPinCodeClick(getPosition());
+    }
+
+    protected void setPinCodeType(PinCodeType pinCodeType) {
+        etPinCode.setInputType(pinCodeType.getInputType());
     }
 }

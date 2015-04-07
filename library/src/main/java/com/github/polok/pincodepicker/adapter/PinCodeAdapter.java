@@ -17,28 +17,28 @@ package com.github.polok.pincodepicker.adapter;
 
 import android.content.res.Resources;
 import android.support.annotation.ColorRes;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.support.annotation.DrawableRes;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
-import com.github.polok.pincodepicker.PinCodeListener;
-import com.github.polok.pincodepicker.PinCodeValidation;
 import com.github.polok.pincodepicker.PinCodeViewListener;
 import com.github.polok.pincodepicker.R;
+import com.github.polok.pincodepicker.model.PinCodeType;
 
 public class PinCodeAdapter extends AbsPinCodeAdapter<PinCodeAdapter.PinCodeViewHolder> implements PinCodeViewListener {
 
     private Resources resources;
 
-    private PinCodeListener pinCodeListener;
-    private PinCodeValidation pinCodeValidation;
+    private int filledOutDrawableId;
+    private PinCodeType pinCodeType;
 
-    public PinCodeAdapter(Resources resources, int pinCodeLength) {
+    public PinCodeAdapter(Resources resources, int pinCodeLength, PinCodeType codeType, @DrawableRes int filledOutDrawableId) {
         super(pinCodeLength);
         this.resources = resources;
+        this.pinCodeType = codeType;
+        this.filledOutDrawableId = filledOutDrawableId;
     }
 
     @Override
@@ -54,6 +54,7 @@ public class PinCodeAdapter extends AbsPinCodeAdapter<PinCodeAdapter.PinCodeView
         Character character = pinCodeArray[position];
 
         if (position == currentPosition) {
+            pinCodeViewHolder.setPinCodeType(pinCodeType);
             pinCodeViewHolder.etPinCode.setVisibility(View.VISIBLE);
             pinCodeViewHolder.etPinCode.requestFocus();
             showFrontView(pinCodeViewHolder, R.color.view_selected_pin_code);
@@ -73,6 +74,7 @@ public class PinCodeAdapter extends AbsPinCodeAdapter<PinCodeAdapter.PinCodeView
         pinCodeViewHolder.rlPinCodeContainer.setBackgroundColor(resources.getColor(R.color.view_fillout_pin_code_background));
         pinCodeViewHolder.rlFront.setVisibility(View.GONE);
         pinCodeViewHolder.rlBack.setVisibility(View.VISIBLE);
+        pinCodeViewHolder.viewFilledOut.setBackgroundResource(filledOutDrawableId);
     }
 
     private void showFrontView(PinCodeViewHolder pinCodeViewHolder, @ColorRes int backgroundColorRes) {
@@ -90,16 +92,21 @@ public class PinCodeAdapter extends AbsPinCodeAdapter<PinCodeAdapter.PinCodeView
     public void onPinCodeChange(int position, Character pinCodeChar) {
         pinCodeArray[position] = pinCodeChar;
 
-        notifyItemChanged(currentPosition);
-        currentPosition = position + 1;
-        notifyItemChanged(currentPosition);
+        if(pinCodeChar == NULL_CHARACTER) {
+            notifyItemChanged(currentPosition);
+        } else {
+            pinCodeArray[position] = pinCodeChar;
+            notifyItemChanged(currentPosition);
+            currentPosition = position + 1;
+            notifyItemChanged(currentPosition);
 
-        if (hasWholeCode()) {
-            String pinCode = String.copyValueOf(pinCodeArray);
-            pinCodeListener.onPinCodeInserted(pinCode);
+            if (hasWholeCode()) {
+                String pinCode = String.copyValueOf(pinCodeArray);
+                pinCodeListener.onPinCodeInserted(pinCode);
 
-            if(pinCodeValidation != null) {
-                validatePinCode(pinCode);
+                if (pinCodeValidation != null) {
+                    validatePinCode(pinCode);
+                }
             }
         }
     }
@@ -112,16 +119,6 @@ public class PinCodeAdapter extends AbsPinCodeAdapter<PinCodeAdapter.PinCodeView
         }
     }
 
-    private boolean hasWholeCode() {
-        boolean hasWholeCode = true;
-
-        for (char item : pinCodeArray) {
-            hasWholeCode = item != NULL_CHARACTER && hasWholeCode;
-        }
-
-        return hasWholeCode;
-    }
-
     @Override
     public void onPinCodeClick(int position) {
         notifyItemChanged(currentPosition);
@@ -129,50 +126,42 @@ public class PinCodeAdapter extends AbsPinCodeAdapter<PinCodeAdapter.PinCodeView
         currentPosition = position;
     }
 
-    static class PinCodeViewHolder extends AbsPinCodeViewHolder implements View.OnClickListener {
+    static class PinCodeViewHolder extends AbsPinCodeViewHolder {
 
         RelativeLayout rlPinCodeContainer;
         RelativeLayout rlFront;
         RelativeLayout rlBack;
+        View viewFilledOut;
 
         public PinCodeViewHolder(View itemView, final PinCodeViewListener pinCodeViewListener) {
-            super(itemView, pinCodeViewListener, R.id.et_pin_code);
+            super(itemView, pinCodeViewListener);
 
             rlPinCodeContainer = (RelativeLayout) itemView.findViewById(R.id.rl_pin_code_container);
             rlFront = (RelativeLayout) itemView.findViewById(R.id.rl_front);
             rlBack = (RelativeLayout) itemView.findViewById(R.id.rl_back);
-
-            etPinCode.addTextChangedListener(new PinCodeTextWatcher() {
-                @Override
-                public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-                    if (charSequence.length() > 0) {
-                        pinCodeViewListener.onPinCodeChange(getPosition(), charSequence.charAt(0));
-                    } else {
-                        pinCodeViewListener.onPinCodeChange(getPosition(), NULL_CHARACTER);
-                    }
-                }
-            });
+            viewFilledOut = itemView.findViewById(R.id.view_pin_code_filled_out);
 
             itemView.setOnClickListener(this);
         }
-    }
-
-    public void setPinCodeListener(PinCodeListener listener) {
-        this.pinCodeListener = listener;
-    }
-
-    public void setPinCodeValidation(PinCodeValidation validation) {
-        this.pinCodeValidation = validation;
-    }
-
-    private static abstract class PinCodeTextWatcher implements TextWatcher {
 
         @Override
-        public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+        protected int getEditTextId() {
+            return R.id.et_pin_code;
         }
 
         @Override
-        public void afterTextChanged(Editable editable) {
+        protected PinCodeTextWatcher getPinCodeTextWatcher() {
+            return new PinCodeTextWatcher() {
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                    if (charSequence.length() > 0) {
+                        codeChangeListener.onPinCodeChange(getPosition(), charSequence.charAt(0));
+                    } else {
+                        codeChangeListener.onPinCodeChange(getPosition(), NULL_CHARACTER);
+                    }
+                }
+            };
         }
     }
+
 }
