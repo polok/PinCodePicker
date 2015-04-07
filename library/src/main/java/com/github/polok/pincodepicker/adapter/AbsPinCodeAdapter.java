@@ -1,5 +1,6 @@
 package com.github.polok.pincodepicker.adapter;
 
+import android.animation.Animator;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,6 +18,9 @@ public abstract class AbsPinCodeAdapter<T extends AbsPinCodeViewHolder> extends 
     protected PinCodeListener pinCodeListener;
     protected PinCodeValidation pinCodeValidation;
 
+    protected Animator animationCurrent;
+
+
     protected char[] pinCodeArray;
 
     protected AbsPinCodeAdapter(int pinCodeLength) {
@@ -31,6 +35,10 @@ public abstract class AbsPinCodeAdapter<T extends AbsPinCodeViewHolder> extends 
         }
 
         return hasWholeCode;
+    }
+
+    public void setCurrentPinCodeAnimation(Animator animation) {
+        this.animationCurrent = animation;
     }
 
     public void setPinCodeListener(PinCodeListener listener) {

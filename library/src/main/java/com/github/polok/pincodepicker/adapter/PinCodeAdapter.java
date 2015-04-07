@@ -53,11 +53,18 @@ public class PinCodeAdapter extends AbsPinCodeAdapter<PinCodeAdapter.PinCodeView
     public void onBindViewHolder(PinCodeViewHolder pinCodeViewHolder, int position) {
         Character character = pinCodeArray[position];
 
+        if(animationCurrent.isRunning()) {
+            animationCurrent.end();
+        }
+
         if (position == currentPosition) {
             pinCodeViewHolder.setPinCodeType(pinCodeType);
             pinCodeViewHolder.etPinCode.setVisibility(View.VISIBLE);
             pinCodeViewHolder.etPinCode.requestFocus();
             showFrontView(pinCodeViewHolder, R.color.view_selected_pin_code);
+
+            animationCurrent.setTarget(pinCodeViewHolder.rlPinCodeContainer);
+            animationCurrent.start();
             return;
         }
 

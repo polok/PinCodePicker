@@ -15,6 +15,8 @@
  */
 package com.github.polok.pincodepicker.view;
 
+import android.animation.Animator;
+import android.animation.AnimatorInflater;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -55,6 +57,9 @@ public class PinCodeRecyclerView extends android.support.v7.widget.RecyclerView 
         pinCodeLength = typedArray.getInt(R.styleable.PinCodeRecyclerViewWidget_pin_code_length, 0);
         int filledOutDrawableId = typedArray.getResourceId(R.styleable.PinCodeRecyclerViewWidget_pin_code_filled_out_drawable, R.drawable.ic_pin_code_check);
 
+        int currentAnimationResId = typedArray.getResourceId(R.styleable.PinCodeRecyclerViewWidget_pin_code_animation_current, R.animator.indicator_no_animator);
+        Animator animationCurrent= AnimatorInflater.loadAnimator(context, currentAnimationResId);
+
         PinCodeType pinCodeType = PinCodeType.typeFromName(typedArray.getString(R.styleable.PinCodeRecyclerViewWidget_pin_code_type));
 
         setHasFixedSize(true);
@@ -67,8 +72,9 @@ public class PinCodeRecyclerView extends android.support.v7.widget.RecyclerView 
         pinCodeAdapter = new PinCodeAdapter(getResources(), pinCodeLength, pinCodeType, filledOutDrawableId);
         setAdapter(pinCodeAdapter);
 
-        addItemDecoration(new RecyclerViewInsetDecoration(context.getResources(), R.dimen.pin_code_view_inset_default));
+        pinCodeAdapter.setCurrentPinCodeAnimation(animationCurrent);
 
+        addItemDecoration(new RecyclerViewInsetDecoration(context.getResources(), R.dimen.pin_code_view_inset_default));
         setItemAnimator(new DefaultItemAnimator());
     }
 

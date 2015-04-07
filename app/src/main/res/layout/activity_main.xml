@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:pin_code="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -16,11 +16,9 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:background="#3E464C"
-        pin_code:pin_code_length="6" />
+        pin_code:pin_code_length="6"
+        pin_code:pin_code_type="TEXT"
+        pin_code:pin_code_animation_current="@animator/blinking_default_animator"
+        pin_code:pin_code_filled_out_drawable="@drawable/ic_pin_code_check"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/list" />
-
-</RelativeLayout>
+</LinearLayout>
