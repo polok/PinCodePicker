@@ -17,6 +17,14 @@ Notice that PinCodePicker is a project under huge development ;) (at least shoul
 
 ###Quick Setup（Basic Usage)
 
+####XML attributes support:
+```xml
+<attr name="pin_code_length" format="integer"/>
+<attr name="pin_code_type" format="string"/>
+<attr name="pin_code_animation_current" format="reference"/>
+<attr name="pin_code_filled_out_drawable" format="reference"/>
+```
+
 #####1.Integration
 
 ###### Using Gradle:
