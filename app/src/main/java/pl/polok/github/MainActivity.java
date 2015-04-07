@@ -31,15 +31,15 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        PinCodeRecyclerView view = (PinCodeRecyclerView) findViewById(R.id.list);
-        view.setPinCodeListener(new PinCodeListener() {
+        PinCodeRecyclerView pinCode = (PinCodeRecyclerView) findViewById(R.id.pin_code);
+        pinCode.setPinCodeListener(new PinCodeListener() {
             @Override
             public void onPinCodeInserted(String pinCode) {
                 Toast.makeText(MainActivity.this, "Whole code inserted", Toast.LENGTH_SHORT).show();
             }
         });
 
-        view.setPinCodeValidation(new PinCodeValidation() {
+        pinCode.setPinCodeValidation(new PinCodeValidation() {
             @Override
             public CharSequence getCorrectPinCode() {
                 return "012345";
@@ -55,5 +55,14 @@ public class MainActivity extends ActionBarActivity {
                 Toast.makeText(MainActivity.this, "Code is NOT valid", Toast.LENGTH_SHORT).show();
             }
         });
+
+        PinCodeRecyclerView pinCodeAnimation = (PinCodeRecyclerView) findViewById(R.id.pin_code_animation);
+        pinCodeAnimation.setPinCodeListener(new PinCodeListener() {
+            @Override
+            public void onPinCodeInserted(String pinCode) {
+                Toast.makeText(MainActivity.this, "Whole code inserted", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 }

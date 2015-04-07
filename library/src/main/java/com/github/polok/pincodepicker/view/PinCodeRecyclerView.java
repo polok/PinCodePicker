@@ -15,17 +15,21 @@
  */
 package com.github.polok.pincodepicker.view;
 
+import android.animation.Animator;
+import android.animation.AnimatorInflater;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.util.AttributeSet;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 
-import com.github.polok.pincodepicker.adapter.PinCodeAdapter;
 import com.github.polok.pincodepicker.PinCodeListener;
 import com.github.polok.pincodepicker.PinCodeValidation;
 import com.github.polok.pincodepicker.R;
+import com.github.polok.pincodepicker.adapter.PinCodeAdapter;
 import com.github.polok.pincodepicker.adapter.RecyclerViewInsetDecoration;
+import com.github.polok.pincodepicker.model.PinCodeType;
 
 public class PinCodeRecyclerView extends android.support.v7.widget.RecyclerView {
 
@@ -51,6 +55,12 @@ public class PinCodeRecyclerView extends android.support.v7.widget.RecyclerView 
     private void initView(Context context, AttributeSet attrs) {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.PinCodeRecyclerViewWidget);
         pinCodeLength = typedArray.getInt(R.styleable.PinCodeRecyclerViewWidget_pin_code_length, 0);
+        int filledOutDrawableId = typedArray.getResourceId(R.styleable.PinCodeRecyclerViewWidget_pin_code_filled_out_drawable, R.drawable.ic_pin_code_check);
+
+        int currentAnimationResId = typedArray.getResourceId(R.styleable.PinCodeRecyclerViewWidget_pin_code_animation_current, R.animator.indicator_no_animator);
+        Animator animationCurrent= AnimatorInflater.loadAnimator(context, currentAnimationResId);
+
+        PinCodeType pinCodeType = PinCodeType.typeFromName(typedArray.getString(R.styleable.PinCodeRecyclerViewWidget_pin_code_type));
 
         setHasFixedSize(true);
 
@@ -59,17 +69,20 @@ public class PinCodeRecyclerView extends android.support.v7.widget.RecyclerView 
 
         setLayoutManager(layoutManager);
 
-        pinCodeAdapter = new PinCodeAdapter(getResources(), pinCodeLength);
+        pinCodeAdapter = new PinCodeAdapter(getResources(), pinCodeLength, pinCodeType, filledOutDrawableId);
         setAdapter(pinCodeAdapter);
 
+        pinCodeAdapter.setCurrentPinCodeAnimation(animationCurrent);
+
         addItemDecoration(new RecyclerViewInsetDecoration(context.getResources(), R.dimen.pin_code_view_inset_default));
+        setItemAnimator(new DefaultItemAnimator());
     }
 
     @Override
     protected void onMeasure(int widthSpec, int heightSpec) {
         super.onMeasure(widthSpec, heightSpec);
 
-        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) getLayoutParams();
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) getLayoutParams();
         params.height = getResources().getDimensionPixelSize(R.dimen.pin_code_height);
         setLayoutParams(params);
     }

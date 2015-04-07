@@ -38,6 +38,7 @@
         android:visibility="gone">
 
         <View
+            android:id="@+id/view_pin_code_filled_out"
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:layout_centerInParent="true"
