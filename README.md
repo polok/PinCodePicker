@@ -2,7 +2,7 @@
 
 ###Version: 0.0.3
 
-[![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+[![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-PinCodePicker-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/1725)
 
 ###Description
 
