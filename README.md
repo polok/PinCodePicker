@@ -1,23 +1,23 @@
-#PinCodePicker
+# PinCodePicker
 
-###Version: 0.0.3
+### Version: 0.0.3
 
 [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-PinCodePicker-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/1725)
 
-###Description
+### Description
 
 PinCodePicker was created for Android platform as a view which allows to take passwords/codes or some other sensitive data from end user in easy way, so developers can focus on the core functionalities of their application!
 
 Notice that PinCodePicker is a project under huge development ;) (at least should be)
 
-####Welcome to fork and pull request.
+#### Welcome to fork and pull request.
 
-###Screenshot
+### Screenshot
 ![image](art/pin_code_picker_0_0_3.gif)
 
-###Quick Setup（Basic Usage)
+### Quick Setup（Basic Usage)
 
-####XML attributes support:
+#### XML attributes support:
 ```xml
 <attr name="pin_code_length" format="integer"/>
 <attr name="pin_code_type" format="string"/>
@@ -25,7 +25,7 @@ Notice that PinCodePicker is a project under huge development ;) (at least shoul
 <attr name="pin_code_filled_out_drawable" format="reference"/>
 ```
 
-#####1.Integration
+##### 1.Integration
 
 ###### Using Gradle:
 
@@ -45,9 +45,9 @@ dependencies {
 </dependency>
 ```
 
-#####2.Usage
+##### 2.Usage
 
-######Add picker into our UI (set pincode length)
+###### Add picker into our UI (set pincode length)
 ```xml
     <com.github.polok.pincodepicker.PinCodeRecyclerView
         android:id="@+id/list"
@@ -58,7 +58,7 @@ dependencies {
         pin_code:pin_code_length="6"/>
 ```
 
-######Set listener to be notified when whole pin code was entered
+###### Set listener to be notified when whole pin code was entered
 
 ```java
 PinCodeRecyclerView view = (PinCodeRecyclerView) findViewById(R.id.list);
@@ -70,7 +70,7 @@ PinCodeRecyclerView view = (PinCodeRecyclerView) findViewById(R.id.list);
     });
 ```
 
-######You can also validate whole entered pin code and check whether it's equal to a specified value
+###### You can also validate whole entered pin code and check whether it's equal to a specified value
 
 ```java
 view.setPinCodeValidation(new PinCodeValidation() {
@@ -91,7 +91,7 @@ view.setPinCodeValidation(new PinCodeValidation() {
 });
 ```
 
-####If you want to see more details, go ahead and check the demo!
+#### If you want to see more details, go ahead and check the demo!
 
 License
 --------
